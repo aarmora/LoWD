@@ -1,4 +1,49 @@
 ﻿
 <div class="container-fluid">
-    New
+    <h3>New Game</h3>
+    <button type="button" class="btn btn-default" ng-click="addUser()" ng-disabled="users.length > 5">Add user to game</button>
+    <button type="button" class="btn btn-primary" ng-click="submitGame()" ng-disabled="users.length < 1">Submit Game</button>
+    <div class="row">
+        <div class="col-md-3" ng-repeat="user in users">
+            <form role="form">
+                <div class="form-group">
+                    <label for="user_id">User</label>
+                    <select class="form-control" ng-model="user.user_id">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lord_id">Lord</label>
+                    <select class="form-control" ng-model="user.lord_id">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lord_pts">Lord Points</label><br />
+                    <input type="text" ng-model="user.lord_pts">
+                </div>
+                <div class="form-group">
+                    <label for="corruption_pts">Corruption Points</label>
+                    <input type="text" ng-model="user.corruption_pts">
+                </div>
+                <div class="form-group">
+                    <label for="gold_pts">Gold Points</label><br />
+                    <input type="text" ng-model="user.gold_pts">
+                </div>
+                <div class="form-group">
+                    <label for="adv_pts">Advance Points</label>
+                    <input type="text" ng-model="user.adv_pts">
+                </div>
+                <div class="form-group">
+                    <label for="quest_pts">Quest Points</label>
+                    <input type="text" ng-model="user.quest_pts">
+                </div>
+                <div class="form-group">
+                    <label for="quest_qty">Quest Quantity</label>
+                    <input type="text" ng-model="user.quest_qty">
+                </div>
+                <button type="submit" class="btn btn-default" ng-click="removeUser($index)">Remove</button>
+            </form>
+        </div>
+    </div>
 </div>
