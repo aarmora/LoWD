@@ -4,11 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-route.js"></script>
+    <script src="~/Scripts/AppScripts/app.js"></script>
+    <script src="~/Scripts/AppScripts/homeController.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
+<body ng-app>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -29,7 +33,8 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    {{1+1}}
+    <div class="container body-content" >
         @RenderBody()
         <hr />
         <footer>
