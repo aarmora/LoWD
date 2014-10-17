@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LoWDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="game">
+          <Key>
+            <PropertyRef Name="game_id" />
+          </Key>
+          <Property Name="game_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="undermountain_flag" Type="int" Nullable="false" />
+          <Property Name="skullport_flag" Type="int" Nullable="false" />
+          <Property Name="plus_one_flag" Type="int" Nullable="false" />
+          <Property Name="create_date" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="game_played">
+          <Key>
+            <PropertyRef Name="game_id" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="lord_id" />
+          </Key>
+          <Property Name="game_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="lord_id" Type="int" Nullable="false" />
+          <Property Name="lord_pts" Type="int" Nullable="false" />
+          <Property Name="corruption_pts" Type="int" Nullable="false" />
+          <Property Name="gold_pts" Type="int" Nullable="false" />
+          <Property Name="adv_pts" Type="int" Nullable="false" />
+          <Property Name="quest_pts" Type="int" Nullable="false" />
+          <Property Name="quest_qty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lord">
+          <Key>
+            <PropertyRef Name="lord_id" />
+          </Key>
+          <Property Name="lord_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fname" Type="varchar" MaxLength="50" />
+          <Property Name="lname" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="LoWDModelStoreContainer">
+          <EntitySet Name="game" EntityType="Self.game" Schema="aarmora" store:Type="Tables" />
+          <EntitySet Name="game_played" EntityType="Self.game_played" Schema="aarmora" store:Type="Tables" />
+          <EntitySet Name="lord" EntityType="Self.lord" Schema="aarmora" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="aarmora" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LoWDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="game">
+          <Key>
+            <PropertyRef Name="game_id" />
+          </Key>
+          <Property Name="game_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="undermountain_flag" Type="Int32" Nullable="false" />
+          <Property Name="skullport_flag" Type="Int32" Nullable="false" />
+          <Property Name="plus_one_flag" Type="Int32" Nullable="false" />
+          <Property Name="create_date" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="game_played">
+          <Key>
+            <PropertyRef Name="game_id" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="lord_id" />
+          </Key>
+          <Property Name="game_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="lord_id" Type="Int32" Nullable="false" />
+          <Property Name="lord_pts" Type="Int32" Nullable="false" />
+          <Property Name="corruption_pts" Type="Int32" Nullable="false" />
+          <Property Name="gold_pts" Type="Int32" Nullable="false" />
+          <Property Name="adv_pts" Type="Int32" Nullable="false" />
+          <Property Name="quest_pts" Type="Int32" Nullable="false" />
+          <Property Name="quest_qty" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lord">
+          <Key>
+            <PropertyRef Name="lord_id" />
+          </Key>
+          <Property Name="lord_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="LoWDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="games" EntityType="Self.game" />
+          <EntitySet Name="game_played" EntityType="Self.game_played" />
+          <EntitySet Name="lords" EntityType="Self.lord" />
+          <EntitySet Name="users" EntityType="Self.user" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LoWDModelStoreContainer" CdmEntityContainer="LoWDEntities">
+          <EntitySetMapping Name="games">
+            <EntityTypeMapping TypeName="LoWDModel.game">
+              <MappingFragment StoreEntitySet="game">
+                <ScalarProperty Name="game_id" ColumnName="game_id" />
+                <ScalarProperty Name="undermountain_flag" ColumnName="undermountain_flag" />
+                <ScalarProperty Name="skullport_flag" ColumnName="skullport_flag" />
+                <ScalarProperty Name="plus_one_flag" ColumnName="plus_one_flag" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="game_played">
+            <EntityTypeMapping TypeName="LoWDModel.game_played">
+              <MappingFragment StoreEntitySet="game_played">
+                <ScalarProperty Name="game_id" ColumnName="game_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="lord_id" ColumnName="lord_id" />
+                <ScalarProperty Name="lord_pts" ColumnName="lord_pts" />
+                <ScalarProperty Name="corruption_pts" ColumnName="corruption_pts" />
+                <ScalarProperty Name="gold_pts" ColumnName="gold_pts" />
+                <ScalarProperty Name="adv_pts" ColumnName="adv_pts" />
+                <ScalarProperty Name="quest_pts" ColumnName="quest_pts" />
+                <ScalarProperty Name="quest_qty" ColumnName="quest_qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lords">
+            <EntityTypeMapping TypeName="LoWDModel.lord">
+              <MappingFragment StoreEntitySet="lord">
+                <ScalarProperty Name="lord_id" ColumnName="lord_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="LoWDModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
