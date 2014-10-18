@@ -2,7 +2,7 @@
 ﻿
 (function(){
     
-    var homeController = function ($scope, $http) {
+    var newController = function ($scope, $http) {
         $http({
             url: 'getInfo',
             method: 'GET'
@@ -36,8 +36,31 @@
 
     }
 
-    homeController.$inject = ['$scope', '$http']
+    var showController = function ($scope, $http, $routeParams) {
+        $scope.gameId = $routeParams.id ? $routeParams.id : 4;
+        $scope.filter = function () {
+            return {game_id : $scope.game_id};
+        }
 
-    lowdApp.controller('homeController', homeController)
+        $scope.showAll = function () {
+            $scope.filter = {};
+            $scope.showAll = true;
+        }
+
+        $http({
+            url: 'getGames',
+            method: 'GET'
+        }).success(function (data) {
+            $scope.games = data;
+            console.log(data);
+        });
+        
+    }
+
+    showController.$inject = ['$scope', '$http', '$routeParams']
+    lowdApp.controller('showController', showController)
+
+    newController.$inject = ['$scope', '$http']
+    lowdApp.controller('newController', newController)
 
 }())

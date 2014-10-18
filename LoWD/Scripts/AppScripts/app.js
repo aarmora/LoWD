@@ -1,5 +1,5 @@
 ﻿
-var lowdApp = angular.module('lowdApp', ['ngRoute']);
+var lowdApp = angular.module('lowdApp', ['ngRoute', 'ui.bootstrap']);
 
 lowdApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -8,12 +8,12 @@ lowdApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: '/Content/Views/Index.html'
     })
     .when('/New', {
-        controller: 'homeController',
+        controller: 'newController',
         templateUrl: '/Content/Views/New.html',
         caseInsensitiveMatch: true
     })
     .when('/Games/:id?', {
-        controller: 'homeController',
+        controller: 'showController',
         templateUrl: '/Content/Views/Show.html',
         caseInsensitiveMatch: true
     })

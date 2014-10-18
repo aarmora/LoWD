@@ -15,6 +15,28 @@ namespace LoWD.Controllers
     {
         private LoWDEntities db = new LoWDEntities();
 
+        public class allGames
+        {
+            public int game_id { get; set; }
+            public int undermountain_flag { get; set; }
+            public int skullport_flag { get; set; }
+            public int plus_one_flag { get; set; }
+            public System.DateTime create_date { get; set; }
+            public int user_id { get; set; }
+            public int lord_id { get; set; }
+            public int lord_pts { get; set; }
+            public int corruption_pts { get; set; }
+            public int gold_pts { get; set; }
+            public int adv_pts { get; set; }
+            public int quest_pts { get; set; }
+            public int quest_qty { get; set; }
+            public string name { get; set; }
+            public string description { get; set; }
+            public string user_name { get; set; }
+            public string fname { get; set; }
+            public string lname { get; set; }
+        }
+
 
         public ActionResult Index()
         {
@@ -40,7 +62,7 @@ namespace LoWD.Controllers
 
 
                 string sqlStr1 = "Insert into game_played (game_id, user_id, lord_id, lord_pts, corruption_pts, gold_pts, adv_pts, quest_pts, quest_qty)";
-                sqlStr1 += " Values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {9})";                
+                sqlStr1 += " Values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {8}, {7})";                
                 db.Database.ExecuteSqlCommand(sqlStr1, id, that.user_id, that.lord_id, that.lord_pts, that.corruption_pts, that.gold_pts, that.adv_pts, that.quest_pts, that.quest_qty);
 
                 
@@ -60,6 +82,24 @@ namespace LoWD.Controllers
             string newJSON = JsonConvert.SerializeObject(new { lords = Lords, users = Users });
             Response.ContentType = "application/json";
             Response.Write(newJSON);
+
+            return new EmptyResult();
+        }
+
+        public ActionResult getGames()
+        {
+            string sqlStr = @"Select a.undermountain_flag, a.skullport_flag, a.plus_one_flag, a.create_date, b.game_id, b.user_id, b.lord_id, b.lord_pts, b.corruption_pts,
+                b.gold_pts, b.adv_pts, b.quest_pts, b.quest_qty, c.name, c.description, d.user_name, d.fname, d.lname
+                From game a inner join
+                game_played b on a.game_id = b.game_id inner join
+                lord c on c.lord_id = b.lord_id inner join
+                [user] d on b.user_id = d.user_id";
+
+            var data = db.Database.SqlQuery<allGames>(sqlStr).ToList();
+
+            string json = JsonConvert.SerializeObject(data);
+            Response.ContentType = "application/json";
+            Response.Write(json);
 
             return new EmptyResult();
         }
