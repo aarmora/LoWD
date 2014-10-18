@@ -16,7 +16,7 @@
         $scope.addUser = function () {
             if ($scope.users.length < 6) {
                 $scope.users.push(
-                    { "user_id": "", "lord_id": "", "lord_pts": "", "corruption_pts": "", "gold_pts": "", "adv_pts": "", "quest_pts": "", "quest_qty": "" }
+                    { "user_id": "", "lord_id": "", "lord_pts": "0", "corruption_pts": "0", "gold_pts": "0", "adv_pts": "0", "quest_pts": "0", "quest_qty": "0" }
                 );
             }
         }
