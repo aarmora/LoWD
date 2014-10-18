@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using LoWD.Models;
 using Newtonsoft.Json;
-
+using Newtonsoft.Json.Linq;
 namespace LoWD.Controllers
 {
     public class HomeController : Controller
@@ -39,23 +39,38 @@ namespace LoWD.Controllers
             return View();
         }
 
-        public ActionResult newGame(string[] users)
+        public ActionResult newGame(string users)
         {
             //turn the array of json objects into the user model.
 
             //This works for a single user.  (it would be sent from the js without the [] and we'd catch it over here as just a string)
             //var json = JsonConvert.DeserializeObject<user>(users);
-            
 
+            var json = users;
+            JArray objects = JArray.Parse(json);
 
             int count = 0;
-            foreach (string item in users)
+            foreach (JObject item in objects)
             {
-                count = count + 1;
+                foreach (KeyValuePair<String, JToken> app in item)
+                {
+                    var appName = app.Key;
+                    var val = app.Value;
 
-                Response.Write(count);
+                    Response.Write(appName + ": " + app.Value + "<br> ");
+                    //var description = (String)app.Value["Description"];
+                    //var value = (String)app.Value["Value"];
 
-                Response.Write(item);
+                    //Console.WriteLine(appName);
+                    //Console.WriteLine(description);
+                    //Console.WriteLine(value);
+                    //Console.WriteLine("\n");
+                }
+               // count = count + 1;
+
+                //Response.Write(count);
+
+               // Response.Write(item);
                 
             }
 
