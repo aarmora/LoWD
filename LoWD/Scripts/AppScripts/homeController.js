@@ -1,7 +1,16 @@
 ﻿
 (function(){
     
-    var homeController = function($scope, $http){
+    var homeController = function ($scope, $http) {
+        $http({
+            url: 'getInfo',
+            method: 'GET'
+        }).success(function (data) {
+            $scope.info = data;
+            console.log($scope.info);
+        });
+
+
         $scope.users = [];
 
         $scope.addUser = function () {

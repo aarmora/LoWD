@@ -25,6 +25,15 @@ namespace LoWD.Controllers
             public int? quest_qty { get; set; }
         }
 
+
+        public class lord
+        {
+            public int? lord_id { get; set; }
+            public int? name { get; set; }
+            public int? description { get; set; }
+        }
+
+
         public ActionResult Index()
         {
             return View();
@@ -50,6 +59,19 @@ namespace LoWD.Controllers
                 
             }
 
+
+            return new EmptyResult();
+        }
+
+        public ActionResult getInfo()
+        {
+            //string sqlStr = "Select * From lowd.lord";
+
+            //var Lords = db.Database.SqlQuery<lord>(sqlStr).ToList();
+
+            //string newJSON = JsonConvert.SerializeObject(Lords);
+
+            Response.Write(newJSON);
 
             return new EmptyResult();
         }
