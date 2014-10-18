@@ -21,13 +21,14 @@ namespace LoWD.Controllers
             return View();
         }
 
-        public ActionResult newGame(string users, string gameInfo)
+        public ActionResult newGame(string users, JObject gameInfo)
         {
+            var gameInfoJson = gameInfo.ToObject<game>();
 
             JArray objects = JArray.Parse(users);
             foreach (JObject item in objects)
             {
-                var that = item.ToObject<game>();
+                var that = item.ToObject<game_played>();
 
                 Response.Write(that.lord_pts);
                 
@@ -39,11 +40,13 @@ namespace LoWD.Controllers
 
         public ActionResult getInfo()
         {
-            string sqlStr = "Select lord_id, name, description From lord";
+            string sqlStr = "Select lord_id, name, description From lord";            
+            string sqlStr1 = "Select user_id, user_name, fname, lname From [user]";
 
             var Lords = db.Database.SqlQuery<lord>(sqlStr).ToList();
+            var Users = db.Database.SqlQuery<user>(sqlStr1).ToList();
 
-            string newJSON = JsonConvert.SerializeObject(Lords);
+            string newJSON = JsonConvert.SerializeObject(new { lords = Lords, users = Users });
             Response.ContentType = "application/json";
             Response.Write(newJSON);
 

@@ -16,13 +16,11 @@
             <form role="form">
                 <div class="form-group">
                     <label for="user_id">User</label>
-                    <select class="form-control" ng-model="user.user_id">
-                        <option></option>
-                    </select>
+                    <select class="form-control" ng-model="user.user_id" ng-options="user.user_id as user.user_name for user in info.users"></select>
                 </div>
                 <div class="form-group">
                     <label for="lord_id">Lord</label>
-                    <select class="form-control" ng-model="user.lord_id">
+                    <select class="form-control" ng-model="user.lord_id" ng-options="lord.lord_id as lord.name for lord in info.lords">
                         <option></option>
                     </select>
                 </div>
