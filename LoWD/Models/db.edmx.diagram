@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="dafe6c84db6f46b48b08f8afe9534cb8" Name="Diagram1">
-        <EntityTypeShape EntityType="LoWDModel.game" Width="1.5" PointX="0.75" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="LoWDModel.game_played" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LoWDModel.lord" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LoWDModel.user" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LoWDModel.game" Width="1.5" PointX="3.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

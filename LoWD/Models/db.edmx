@@ -58,16 +58,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LoWDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="game">
-          <Key>
-            <PropertyRef Name="game_id" />
-          </Key>
-          <Property Name="game_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="undermountain_flag" Type="Int32" Nullable="false" />
-          <Property Name="skullport_flag" Type="Int32" Nullable="false" />
-          <Property Name="plus_one_flag" Type="Int32" Nullable="false" />
-          <Property Name="create_date" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="game_played">
           <Key>
             <PropertyRef Name="game_id" />
@@ -102,28 +92,27 @@
           <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="LoWDEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="games" EntityType="Self.game" />
           <EntitySet Name="game_played" EntityType="Self.game_played" />
           <EntitySet Name="lords" EntityType="Self.lord" />
           <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="games" EntityType="LoWDModel.game" />
         </EntityContainer>
+        <EntityType Name="game">
+          <Key>
+            <PropertyRef Name="game_id" />
+          </Key>
+          <Property Name="game_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="undermountain_flag" Type="Int32" Nullable="false" />
+          <Property Name="skullport_flag" Type="Int32" Nullable="false" />
+          <Property Name="plus_one_flag" Type="Int32" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="LoWDModelStoreContainer" CdmEntityContainer="LoWDEntities">
-          <EntitySetMapping Name="games">
-            <EntityTypeMapping TypeName="LoWDModel.game">
-              <MappingFragment StoreEntitySet="game">
-                <ScalarProperty Name="game_id" ColumnName="game_id" />
-                <ScalarProperty Name="undermountain_flag" ColumnName="undermountain_flag" />
-                <ScalarProperty Name="skullport_flag" ColumnName="skullport_flag" />
-                <ScalarProperty Name="plus_one_flag" ColumnName="plus_one_flag" />
-                <ScalarProperty Name="create_date" ColumnName="create_date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="game_played">
             <EntityTypeMapping TypeName="LoWDModel.game_played">
               <MappingFragment StoreEntitySet="game_played">
@@ -155,6 +144,17 @@
                 <ScalarProperty Name="user_name" ColumnName="user_name" />
                 <ScalarProperty Name="fname" ColumnName="fname" />
                 <ScalarProperty Name="lname" ColumnName="lname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="games">
+            <EntityTypeMapping TypeName="LoWDModel.game">
+              <MappingFragment StoreEntitySet="game">
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="plus_one_flag" ColumnName="plus_one_flag" />
+                <ScalarProperty Name="skullport_flag" ColumnName="skullport_flag" />
+                <ScalarProperty Name="undermountain_flag" ColumnName="undermountain_flag" />
+                <ScalarProperty Name="game_id" ColumnName="game_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

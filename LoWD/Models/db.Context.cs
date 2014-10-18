@@ -25,9 +25,9 @@ namespace LoWD.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<game> games { get; set; }
         public virtual DbSet<game_played> game_played { get; set; }
         public virtual DbSet<lord> lords { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<game> games { get; set; }
     }
 }
