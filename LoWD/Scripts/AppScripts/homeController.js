@@ -1,3 +1,4 @@
+
 ﻿
 (function(){
     
@@ -9,8 +10,7 @@
             $scope.info = data;
             console.log($scope.info);
         });
-
-
+        
         $scope.users = [];
 
         $scope.addUser = function () {
@@ -29,7 +29,7 @@
             $http({
                 url: 'newGame',
                 method: 'POST',
-                params: {users:[$scope.users]}
+                params: {users:[$scope.users], gameInfo:$scope.game}
             })
         }
 

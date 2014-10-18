@@ -12,7 +12,7 @@ namespace LoWD.Controllers
     {
         private LoWDEntities db = new LoWDEntities();
 
-        public class user
+        public class game
         {
             public int? game_id { get; set; }
             public int? user_id { get; set; }
@@ -39,38 +39,15 @@ namespace LoWD.Controllers
             return View();
         }
 
-        public ActionResult newGame(string users)
+        public ActionResult newGame(string users, string gameInfo)
         {
-            //turn the array of json objects into the user model.
 
-            //This works for a single user.  (it would be sent from the js without the [] and we'd catch it over here as just a string)
-            //var json = JsonConvert.DeserializeObject<user>(users);
-
-            var json = users;
-            JArray objects = JArray.Parse(json);
-
-            int count = 0;
+            JArray objects = JArray.Parse(users);
             foreach (JObject item in objects)
             {
-                foreach (KeyValuePair<String, JToken> app in item)
-                {
-                    var appName = app.Key;
-                    var val = app.Value;
+                var that = item.ToObject<game>();
 
-                    Response.Write(appName + ": " + app.Value + "<br> ");
-                    //var description = (String)app.Value["Description"];
-                    //var value = (String)app.Value["Value"];
-
-                    //Console.WriteLine(appName);
-                    //Console.WriteLine(description);
-                    //Console.WriteLine(value);
-                    //Console.WriteLine("\n");
-                }
-               // count = count + 1;
-
-                //Response.Write(count);
-
-               // Response.Write(item);
+                Response.Write(that.lord_pts);
                 
             }
 
@@ -86,7 +63,7 @@ namespace LoWD.Controllers
 
             //string newJSON = JsonConvert.SerializeObject(Lords);
 
-            Response.Write(newJSON);
+            //Response.Write(newJSON);
 
             return new EmptyResult();
         }
