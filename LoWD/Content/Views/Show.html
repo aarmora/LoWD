@@ -1,4 +1,33 @@
 ﻿
 <div class="container-fluid">
-    Show games
+    <button type="button" class="btn btn-default" ng-click="showAll()" ng-disabled="showAll">Show All</button>
+    <table class="table-hover table">
+        <thead>
+            <tr>
+                <td>
+                    Game
+                </td>
+                <td>Playa</td>
+                <td>Lord</td>
+                <td>Corruption Pts</td>
+                <td>Gold Pts</td>
+                <td>Lord Pts</td>
+                <td>Quest Pts</td>
+                <td>Quest Qty</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="game in games | filter:filter()">
+                <td>{{game.game_id}}</td>
+                <td>{{game.user_name}}</td>
+                <td popover-placement="bottom" popover-trigger="mouseenter" popover="{{game.description}}">{{game.name}}</td>
+                <td>{{game.corruption_pts}}</td>
+                <td>{{game.gold_pts}}</td>
+                <td>{{game.lord_pts}}</td>
+                <td>{{game.quest_pts}}</td>
+                <td>{{game.quest_qty}}</td>
+            </tr>
+        </tbody>
+
+    </table>
 </div>
