@@ -69,7 +69,7 @@ namespace LoWD.Controllers
             var Lords = db.Database.SqlQuery<lord>(sqlStr).ToList();
 
             string newJSON = JsonConvert.SerializeObject(Lords);
-
+            Response.ContentType = "application/json";
             Response.Write(newJSON);
 
             return new EmptyResult();
