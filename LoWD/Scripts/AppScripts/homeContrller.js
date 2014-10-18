@@ -39,11 +39,11 @@
     var showController = function ($scope, $http, $routeParams) {
         $scope.gameId = $routeParams.id ? $routeParams.id : 4;
         $scope.filter = function () {
-            $scope.Filter =  {game_id : $scope.gameId};
+            return {game_id : $scope.game_id};
         }
 
         $scope.showAll = function () {
-            $scope.Filter = {};
+            $scope.filter = {};
             $scope.showAll = true;
         }
 
