@@ -1,6 +1,6 @@
 ﻿
 <div class="container-fluid">
-    <button type="button" class="btn btn-default" ng-click="showAll()" ng-disabled="showAll">Show All</button>
+    <button type="button" class="btn btn-default" ng-click="showAll()" ng-disabled="!showAll">Show All</button>
     <table class="table-hover table">
         <thead>
             <tr>
@@ -17,10 +17,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="game in games | filter:filter()">
+            <tr ng-repeat="game in games | filter:Filter" ng-init="filter()">
                 <td>{{game.game_id}}</td>
                 <td>{{game.user_name}}</td>
-                <td popover-placement="bottom" popover-trigger="mouseenter" popover="{{game.description}}">{{game.name}}</td>
+                <td>{{game.name}}</td>
                 <td>{{game.corruption_pts}}</td>
                 <td>{{game.gold_pts}}</td>
                 <td>{{game.lord_pts}}</td>
