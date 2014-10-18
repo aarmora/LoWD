@@ -6,32 +6,16 @@ using System.Web.Mvc;
 using LoWD.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Xml;
+using System.Data.Entity;
+
 namespace LoWD.Controllers
 {
     public class HomeController : Controller
     {
         private LoWDEntities db = new LoWDEntities();
 
-        public class user
-        {
-            public int? game_id { get; set; }
-            public int? user_id { get; set; }
-            public int? lord_id { get; set; }
-            public int? lord_pts { get; set; }
-            public int? corruption_pts { get; set; }
-            public int? gold_pts { get; set; }
-            public int? adv_pts { get; set; }
-            public int? quest_pts { get; set; }
-            public int? quest_qty { get; set; }
-        }
-
-
-        public class lord
-        {
-            public int? lord_id { get; set; }
-            public int? name { get; set; }
-            public int? description { get; set; }
-        }
+        
 
 
         public ActionResult Index()
@@ -80,11 +64,11 @@ namespace LoWD.Controllers
 
         public ActionResult getInfo()
         {
-            //string sqlStr = "Select * From lowd.lord";
+            string sqlStr = "Select lord_id, name, description From lord";
 
-            //var Lords = db.Database.SqlQuery<lord>(sqlStr).ToList();
+            var Lords = db.Database.SqlQuery<lord>(sqlStr).ToList();
 
-            //string newJSON = JsonConvert.SerializeObject(Lords);
+            string newJSON = JsonConvert.SerializeObject(Lords);
 
             Response.Write(newJSON);
 
