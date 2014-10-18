@@ -3,18 +3,24 @@
     <h3>New Game</h3>
     <button type="button" class="btn btn-default" ng-click="addUser()" ng-disabled="users.length > 5">Add user to game</button>
     <button type="button" class="btn btn-primary" ng-click="submitGame()" ng-disabled="users.length < 1">Submit Game</button>
+    <label>Undermountain</label>
+    <input type="checkbox" ng-model="game.undermountain_flag"/>
+    <label>Skullport</label>
+    <input type="checkbox" ng-model="game.skullport_flag" />
+    <label>Extended</label>
+    <input type="checkbox" ng-model="game.plus_one_flag" />
+    <label>Create Date</label>
+    <input type="date" ng-model="game.create_date" />
     <div class="row">
         <div class="col-md-3" ng-repeat="user in users">
             <form role="form">
                 <div class="form-group">
                     <label for="user_id">User</label>
-                    <select class="form-control" ng-model="user.user_id">
-                        <option></option>
-                    </select>
+                    <select class="form-control" ng-model="user.user_id" ng-options="user.user_id as user.user_name for user in info.users"></select>
                 </div>
                 <div class="form-group">
                     <label for="lord_id">Lord</label>
-                    <select class="form-control" ng-model="user.lord_id">
+                    <select class="form-control" ng-model="user.lord_id" ng-options="lord.lord_id as lord.name for lord in info.lords">
                         <option></option>
                     </select>
                 </div>

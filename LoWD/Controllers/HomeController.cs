@@ -15,46 +15,22 @@ namespace LoWD.Controllers
     {
         private LoWDEntities db = new LoWDEntities();
 
-        
-
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult newGame(string users)
+        public ActionResult newGame(string users, JObject gameInfo)
         {
-            //turn the array of json objects into the user model.
+            var gameInfoJson = gameInfo.ToObject<game>();
 
-            //This works for a single user.  (it would be sent from the js without the [] and we'd catch it over here as just a string)
-            //var json = JsonConvert.DeserializeObject<user>(users);
-
-            var json = users;
-            JArray objects = JArray.Parse(json);
-
-            int count = 0;
+            JArray objects = JArray.Parse(users);
             foreach (JObject item in objects)
             {
-                foreach (KeyValuePair<String, JToken> app in item)
-                {
-                    var appName = app.Key;
-                    var val = app.Value;
+                var that = item.ToObject<game_played>();
 
-                    Response.Write(appName + ": " + app.Value + "<br> ");
-                    //var description = (String)app.Value["Description"];
-                    //var value = (String)app.Value["Value"];
-
-                    //Console.WriteLine(appName);
-                    //Console.WriteLine(description);
-                    //Console.WriteLine(value);
-                    //Console.WriteLine("\n");
-                }
-               // count = count + 1;
-
-                //Response.Write(count);
-
-               // Response.Write(item);
+                Response.Write(that.lord_pts);
                 
             }
 
@@ -64,11 +40,13 @@ namespace LoWD.Controllers
 
         public ActionResult getInfo()
         {
-            string sqlStr = "Select lord_id, name, description From lord";
+            string sqlStr = "Select lord_id, name, description From lord";            
+            string sqlStr1 = "Select user_id, user_name, fname, lname From [user]";
 
             var Lords = db.Database.SqlQuery<lord>(sqlStr).ToList();
+            var Users = db.Database.SqlQuery<user>(sqlStr1).ToList();
 
-            string newJSON = JsonConvert.SerializeObject(Lords);
+            string newJSON = JsonConvert.SerializeObject(new { lords = Lords, users = Users });
             Response.ContentType = "application/json";
             Response.Write(newJSON);
 
