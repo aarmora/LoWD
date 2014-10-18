@@ -12,6 +12,7 @@
         });
         
         $scope.users = [];
+        $scope.game = {'undermountain_flag':'0', 'skullport_flag':'0', 'plus_one_flag':'0'}
 
         $scope.addUser = function () {
             if ($scope.users.length < 6) {

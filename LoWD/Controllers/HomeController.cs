@@ -25,10 +25,12 @@ namespace LoWD.Controllers
         {
             var gameInfoObject = gameInfo.ToObject<game>();
 
+            DateTime gametime = new DateTime(2014,10,16);
+
             string sqlStr = "Insert into game (undermountain_flag, skullport_flag, plus_one_flag, create_date) Values ({0}, {1}, {2}, {3})";
             sqlStr += " Select Convert(int, Scope_Identity()) AS NewID";
 
-            var id = db.Database.SqlQuery<int>(sqlStr, gameInfoObject.undermountain_flag, gameInfoObject.skullport_flag, gameInfoObject.plus_one_flag, gameInfoObject.create_date).Single();
+            var id = db.Database.SqlQuery<int>(sqlStr, gameInfoObject.undermountain_flag, gameInfoObject.skullport_flag, gameInfoObject.plus_one_flag, gametime).Single();
   
 
             JArray objects = JArray.Parse(users);
