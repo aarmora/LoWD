@@ -18,6 +18,6 @@ namespace LoWD.Models
         public int undermountain_flag { get; set; }
         public int skullport_flag { get; set; }
         public int plus_one_flag { get; set; }
-        public int create_date { get; set; }
+        public System.DateTime create_date { get; set; }
     }
 }
