@@ -37,25 +37,25 @@
     }
 
     var showController = function ($scope, $http, $routeParams) {
-        $scope.gameId = $routeParams.id ? $routeParams.id : 4;
-        $scope.filter = function () {
-            $scope.Filter =  {game_id : $scope.gameId};
-        }
-
-        $scope.showAll = function () {
-            $scope.Filter = {};
+        $scope.gameId = $routeParams.id;
+        if ($routeParams.id) {
+            $scope.Filter = { game_id: $scope.gameId };
             $scope.showAll = true;
         }
+        else {
+            $scope.Filter = {};
+        }
+
 
         $http({
-            url: 'getGames',
+            url: '/Home/getGames',
             method: 'GET'
         }).success(function (data) {
             $scope.games = data;
             console.log(data);
         });
-        
-    }
+
+    };
 
     showController.$inject = ['$scope', '$http', '$routeParams']
     lowdApp.controller('showController', showController)
