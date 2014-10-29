@@ -50,7 +50,6 @@ C:\Sites\LoWD\LoWD\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Sites\LoWD\LoWD\bin\Microsoft.Owin.Security.Google.xml
 C:\Sites\LoWD\LoWD\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Sites\LoWD\LoWD\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Sites\LoWD\LoWD\obj\Debug\LoWD.csprojResolveAssemblyReference.cache
 C:\Sites\LoWD\LoWD\obj\Debug\LoWD.dll
 C:\Sites\LoWD\LoWD\obj\Debug\LoWD.pdb
 C:\VS_Projects\LoWD\LoWD\bin\LoWD.dll.config
@@ -108,3 +107,4 @@ C:\VS_Projects\LoWD\LoWD\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\VS_Projects\LoWD\LoWD\obj\Debug\LoWD.csprojResolveAssemblyReference.cache
 C:\VS_Projects\LoWD\LoWD\obj\Debug\LoWD.dll
 C:\VS_Projects\LoWD\LoWD\obj\Debug\LoWD.pdb
+C:\Sites\LoWD\LoWD\obj\Debug\LoWD.csprojResolveAssemblyReference.cache
