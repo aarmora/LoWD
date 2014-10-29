@@ -4,7 +4,7 @@
     
     var newController = function ($scope, $http) {
         $http({
-            url: 'getInfo',
+            url: '/home/getInfo',
             method: 'GET'
         }).success(function (data) {
             $scope.info = data;
@@ -28,7 +28,7 @@
 
         $scope.submitGame = function () {
             $http({
-                url: 'newGame',
+                url: '/home/newGame',
                 method: 'POST',
                 params: {users:[$scope.users], gameInfo:$scope.game}
             })

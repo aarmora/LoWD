@@ -43,7 +43,7 @@ namespace LoWD.Controllers
             return View();
         }
 
-        public ActionResult newGame(JArray users, JObject gameInfo)
+        public ActionResult newGame(string users, JObject gameInfo)
         {
             var gameInfoObject = gameInfo.ToObject<game>();
 
@@ -55,8 +55,8 @@ namespace LoWD.Controllers
             var id = db.Database.SqlQuery<int>(sqlStr, gameInfoObject.undermountain_flag, gameInfoObject.skullport_flag, gameInfoObject.plus_one_flag, gametime).Single();
   
 
-            //JArray objects = JArray.Parse(users);
-            foreach (JObject item in users)
+            JArray objects = JArray.Parse(users);
+            foreach (JObject item in objects)
             {
                 var that = item.ToObject<game_played>();
 
