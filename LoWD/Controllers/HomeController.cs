@@ -62,18 +62,19 @@ namespace LoWD.Controllers
                 var that = item.ToObject<game_played>();
 
                 string sqlStr1 = "Insert into game_played (game_id, user_id, lord_id, lord_pts, corruption_pts, gold_pts, adv_pts, quest_pts, quest_qty)";
-                sqlStr1 += " Values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {8}, {7})";                
+                sqlStr1 += " Values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})";                
                 db.Database.ExecuteSqlCommand(sqlStr1, id, that.user_id, that.lord_id, that.lord_pts, that.corruption_pts, that.gold_pts, that.adv_pts, that.quest_pts, that.quest_qty);
                 
             }
+            Response.Write(id);
 
             return new EmptyResult();
         }
 
         public ActionResult getInfo()
         {
-            string sqlStr = "Select lord_id, name, description From lord";            
-            string sqlStr1 = "Select user_id, user_name, fname, lname From [user]";
+            string sqlStr = "Select lord_id, name, description From lord order by name";            
+            string sqlStr1 = "Select user_id, user_name, fname, lname From [user] order by fname";
 
             var Lords = db.Database.SqlQuery<lord>(sqlStr).ToList();
             var Users = db.Database.SqlQuery<user>(sqlStr1).ToList();

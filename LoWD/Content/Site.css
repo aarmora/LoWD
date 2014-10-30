@@ -1,4 +1,11 @@
 ﻿
+/*Begin mods*/
+.gameCheck{
+    margin:4px 15px 0 0 !important;
+}
+/*End mods*/
+
+
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 body {
