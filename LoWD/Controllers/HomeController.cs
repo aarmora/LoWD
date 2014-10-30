@@ -44,7 +44,7 @@ namespace LoWD.Controllers
             return View();
         }
 
-        public ActionResult newGame(JArray users, JObject gameInfo)
+        public ActionResult newGame(string users, JObject gameInfo)
         {
             var gameInfoObject = gameInfo.ToObject<game>();
 
@@ -56,16 +56,14 @@ namespace LoWD.Controllers
             var id = db.Database.SqlQuery<int>(sqlStr, gameInfoObject.undermountain_flag, gameInfoObject.skullport_flag, gameInfoObject.plus_one_flag, gametime).Single();
   
 
-            //JArray objects = JArray.Parse(users);
-            foreach (JObject item in users)
+            JArray objects = JArray.Parse(users);
+            foreach (JObject item in objects)
             {
                 var that = item.ToObject<game_played>();
-
 
                 string sqlStr1 = "Insert into game_played (game_id, user_id, lord_id, lord_pts, corruption_pts, gold_pts, adv_pts, quest_pts, quest_qty)";
                 sqlStr1 += " Values ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {8}, {7})";                
                 db.Database.ExecuteSqlCommand(sqlStr1, id, that.user_id, that.lord_id, that.lord_pts, that.corruption_pts, that.gold_pts, that.adv_pts, that.quest_pts, that.quest_qty);
-
                 
             }
 
