@@ -27,12 +27,21 @@
         }
 
         $scope.submitGame = function () {
+            $scope.disableSubmit = true;
             $http({
                 url: '/home/newGame',
                 method: 'POST',
-                params: {users:[$scope.users], gameInfo:$scope.game}
-            })
+                params: { users: [$scope.users], gameInfo: $scope.game }
+            }).success(function (id) {
+                window.location.replace('#/Games/' + id);
+            });
         }
+
+        $scope.verify = function (verifyUser) {
+            if (verifyUser === 'welord4U') {
+                $scope.verified = true;
+            }
+        };
 
     }
 

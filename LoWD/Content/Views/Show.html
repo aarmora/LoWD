@@ -1,13 +1,10 @@
 ﻿
 <div class="container-fluid">
     <a href="#/Games/" type="button" class="btn btn-default" ng-disabled="!showAll">Show All</a>
-    <a href="#/Games/" type="button" class="btn btn-default" ng-repeat=""></a>
     <table class="table-hover table">
         <thead>
             <tr>
-                <td>
-                    Game
-                </td>
+                <td>Game</td>
                 <td>Playa</td>
                 <td>Lord</td>
                 <td>Corruption Pts</td>
@@ -16,6 +13,7 @@
                 <td>Lord Pts</td>
                 <td>Quest Pts</td>
                 <td>Quest Qty</td>
+                <td>Total</td>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +27,7 @@
                 <td>{{game.lord_pts}}</td>
                 <td>{{game.quest_pts}}</td>
                 <td>{{game.quest_qty}}</td>
+                <td>{{game.gold_pts + game.adv_pts + game.lord_pts + game.quest_pts - game.corruption_pts}}</td>
             </tr>
         </tbody>
 

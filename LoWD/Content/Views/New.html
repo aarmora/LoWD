@@ -1,14 +1,19 @@
-﻿
-<div class="container-fluid">
+﻿<div class="container-fluid" ng-if="!verified">
+    <h3>Enter password to be able to enter new game</h3>
+    <input type="password" ng-model="verifyUser" ng-change="verify(verifyUser)" placeholder="Super strong security"/>
+</div>
+
+
+<div class="container-fluid" ng-if="verified">
     <h3>New Game</h3>
     <button type="button" class="btn btn-default" ng-click="addUser()" ng-disabled="users.length > 5">Add user to game</button>
-    <button type="button" class="btn btn-primary" ng-click="submitGame()" ng-disabled="users.length < 1">Submit Game</button>
+    <button type="button" class="btn btn-primary" ng-click="submitGame()" ng-disabled="users.length < 1 || disableSubmit">Submit Game</button>
     <label>Undermountain</label>
-    <input type="checkbox" ng-model="game.undermountain_flag"/>
+    <input type="checkbox" class="gameCheck" ng-model="game.undermountain_flag" />
     <label>Skullport</label>
-    <input type="checkbox" ng-model="game.skullport_flag" />
+    <input type="checkbox" class="gameCheck" ng-model="game.skullport_flag" />
     <label>Extended</label>
-    <input type="checkbox" ng-model="game.plus_one_flag" />
+    <input type="checkbox" class="gameCheck" ng-model="game.plus_one_flag" />
     <label>Create Date</label>
     <input type="date" ng-model="game.create_date" />
     <div class="row">
@@ -30,14 +35,14 @@
                 </div>
                 <div class="form-group">
                     <label for="corruption_pts">Corruption Points</label>
-                    <input type="text" ng-model="user.corruption_pts">
+                    <input type="text" ng-model="user.corruption_pts" placeholder="Enter as positive">
                 </div>
                 <div class="form-group">
                     <label for="gold_pts">Gold Points</label><br />
                     <input type="text" ng-model="user.gold_pts">
                 </div>
                 <div class="form-group">
-                    <label for="adv_pts">Advance Points</label>
+                    <label for="adv_pts">Adventurer Points</label>
                     <input type="text" ng-model="user.adv_pts">
                 </div>
                 <div class="form-group">
