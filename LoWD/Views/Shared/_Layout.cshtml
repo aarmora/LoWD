@@ -27,7 +27,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#/">Home</a></li>
                     <li><a href="#/New">Enter Scores</a></li>
                     <li><a href="#/Games">Past Games</a></li>
                 </ul>
@@ -39,9 +38,11 @@
         @RenderBody()
     </div>
     <hr />
-    <footer>
-        <p>&copy; @DateTime.Now.Year - LOWD Stats - Where we prove Sean isn't better than us.</p>
-    </footer>
+    <div class="container">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - LOWD Stats - Where we prove Sean isn't better than us.</p>
+        </footer>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -188,6 +188,7 @@
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LeaderboardModel.cs" />
     <Compile Include="Models\lord.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
