@@ -4,7 +4,7 @@
     
     var newController = function ($scope, $http) {
         $http({
-            url: '/home/getInfo',
+            url: '/lowd/home/getInfo',
             method: 'GET'
         }).success(function (data) {
             $scope.info = data;
@@ -29,7 +29,7 @@
         $scope.submitGame = function () {
             $scope.disableSubmit = true;
             $http({
-                url: '/home/newGame',
+                url: '/lowd/home/newGame',
                 method: 'POST',
                 params: { users: [$scope.users], gameInfo: $scope.game }
             }).success(function (id) {
@@ -57,7 +57,7 @@
 
 
         $http({
-            url: '/Home/getGames',
+            url: '/lowd/Home/getGames',
             method: 'GET'
         }).success(function (data) {
             $scope.games = data;
