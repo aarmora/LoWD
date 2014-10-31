@@ -66,6 +66,22 @@
 
     };
 
+    var homeController = function ($scope, $http) {
+
+
+        $http({
+            url: '/Home/getLeaderboard',
+            method: 'GET'
+        }).success(function (data) {
+            $scope.leaderboard = data;
+            console.log(data);
+        });
+
+    };
+
+    showController.$inject = ['$scope', '$http']
+    lowdApp.controller('homeController', homeController)
+
     showController.$inject = ['$scope', '$http', '$routeParams']
     lowdApp.controller('showController', showController)
 

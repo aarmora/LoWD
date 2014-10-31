@@ -38,6 +38,7 @@ namespace LoWD.Controllers
         }
 
 
+
         public ActionResult Index()
         {
             return View();
@@ -95,6 +96,24 @@ namespace LoWD.Controllers
                 [user] d on b.user_id = d.user_id";
 
             var data = db.Database.SqlQuery<allGames>(sqlStr).ToList();
+
+            string json = JsonConvert.SerializeObject(data);
+            Response.ContentType = "application/json";
+            Response.Write(json);
+
+            return new EmptyResult();
+        }
+
+        public ActionResult getLeaderboard()
+        {
+            string sqlStr = @"
+                Select b.user_name, Sum(a.lord_pts + a.gold_pts + a.adv_pts + a.quest_pts - a.corruption_pts) Total
+                From game_played a inner join
+	                [user] b on a.user_id = b.user_id
+                Group By b.user_name
+                Order By Sum(a.lord_pts + a.gold_pts + a.adv_pts + a.quest_pts - a.corruption_pts) desc";
+
+            var data = db.Database.SqlQuery<LeaderboardModel>(sqlStr).ToList();
 
             string json = JsonConvert.SerializeObject(data);
             Response.ContentType = "application/json";

@@ -1,4 +1,19 @@
 
+
 <div class="container-fluid">
-    Stats
+    <table class="table-hover table">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Total Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="leader in leaderboard">
+                <td>{{leader.user_name}}</td>
+                <td>{{leader.total}}</td>
+            </tr>
+        </tbody>
+
+    </table>
 </div>
