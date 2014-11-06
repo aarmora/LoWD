@@ -36,17 +36,17 @@ namespace LoWD.Controllers
             public string fname { get; set; }
             public string lname { get; set; }
         }
-
-
+        
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult newGame(string users, JObject gameInfo)
+        public ActionResult newGame(string users, string gameInfo)
         {
-            var gameInfoObject = gameInfo.ToObject<game>();
+            JObject jo = JObject.Parse(gameInfo);
+            var gameInfoObject = jo.ToObject<game>();
 
             DateTime gametime = new DateTime(2014,10,16);
 

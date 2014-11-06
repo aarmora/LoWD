@@ -11,6 +11,8 @@
             console.log($scope.info);
         });
         
+
+
         $scope.users = [];
         $scope.game = {'undermountain_flag':'0', 'skullport_flag':'0', 'plus_one_flag':'0'}
 
