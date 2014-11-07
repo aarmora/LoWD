@@ -18,9 +18,9 @@ namespace LoWD.Controllers
         public class allGames
         {
             public int game_id { get; set; }
-            public int undermountain_flag { get; set; }
-            public int skullport_flag { get; set; }
-            public int plus_one_flag { get; set; }
+            public bool undermountain_flag { get; set; }
+            public bool skullport_flag { get; set; }
+            public bool plus_one_flag { get; set; }
             public System.DateTime create_date { get; set; }
             public int user_id { get; set; }
             public int lord_id { get; set; }
@@ -46,6 +46,9 @@ namespace LoWD.Controllers
         public ActionResult newGame(string users, string gameInfo)
         {
             JObject jo = JObject.Parse(gameInfo);
+            jo["plus_one_flag"] = Convert.ToBoolean(Convert.ToInt32(jo["plus_one_flag"]));
+            jo["undermountain_flag"] = Convert.ToBoolean(Convert.ToInt32(jo["undermountain_flag"]));
+            jo["skullport_flag"] = Convert.ToBoolean(Convert.ToInt32(jo["skullport_flag"]));
             var gameInfoObject = jo.ToObject<game>();
 
             DateTime gametime = new DateTime(2014,10,16);
