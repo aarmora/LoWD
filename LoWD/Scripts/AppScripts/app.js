@@ -3,10 +3,6 @@ var lowdApp = angular.module('lowdApp', ['ngRoute', 'ui.bootstrap']);
 
 lowdApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-    .when('/', {
-        controller: 'homeController',
-        templateUrl: '/Content/Views/Index.html'
-    })
     .when('/New', {
         controller: 'newController',
         templateUrl: '/Content/Views/New.html',

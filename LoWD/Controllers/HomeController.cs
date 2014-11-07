@@ -107,11 +107,14 @@ namespace LoWD.Controllers
         public ActionResult getLeaderboard()
         {
             string sqlStr = @"
-                Select b.user_name, Sum(a.lord_pts + a.gold_pts + a.adv_pts + a.quest_pts - a.corruption_pts) Total
-                From game_played a inner join
+                Select b.user_name, Sum(a.lord_pts + a.gold_pts + a.adv_pts + a.quest_pts - a.corruption_pts) Total, 
+                Sum(a.lord_pts + a.gold_pts + a.adv_pts + a.quest_pts - a.corruption_pts) / Convert(decimal (5,2), Sum(a.quest_qty)) AvgQ, Count(distinct a.Game_id) Games_Played,
+                Sum(a.lord_pts + a.gold_pts + a.adv_pts + a.quest_pts - a.corruption_pts) / Convert(decimal (5,2), Count(distinct a.Game_id)) AvgPtsGm
+                From game_played a inner  join
 	                [user] b on a.user_id = b.user_id
                 Group By b.user_name
-                Order By Sum(a.lord_pts + a.gold_pts + a.adv_pts + a.quest_pts - a.corruption_pts) desc";
+                Order By Sum(a.lord_pts + a.gold_pts + a.adv_pts + a.quest_pts - a.corruption_pts) desc
+                ";
 
             var data = db.Database.SqlQuery<LeaderboardModel>(sqlStr).ToList();
 
