@@ -81,7 +81,13 @@
 
     };
 
-    showController.$inject = ['$scope', '$http']
+    var tournamentsController = function ($scope, $http) {
+
+
+
+    };
+
+    homeController.$inject = ['$scope', '$http']
     lowdApp.controller('homeController', homeController)
 
     showController.$inject = ['$scope', '$http', '$routeParams']
@@ -89,5 +95,8 @@
 
     newController.$inject = ['$scope', '$http']
     lowdApp.controller('newController', newController)
+
+    tournamentsController.$inject = ['$scope', '$http']
+    lowdApp.controller('tournamentsController', tournamentsController)
 
 }())

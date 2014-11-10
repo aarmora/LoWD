@@ -18,6 +18,11 @@ lowdApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: '/lowd/Content/Views/Show.html',
         caseInsensitiveMatch: true
     })
+    .when('/Tournaments/:id?', {
+        controller: 'tournamentsController',
+        templateUrl: '/lowd/Content/Views/Tournaments.html',
+        caseInsensitiveMatch: true
+    })
     .otherwise({
         controller: 'homeController',
         templateUrl: '/lowd/Content/Views/Index.html',

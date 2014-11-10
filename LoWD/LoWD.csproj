@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FSharp.Core">
+      <HintPath>..\..\jhansSite\packages\FSharp.Core.4.0.0\lib\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MailChimp">
+      <HintPath>..\..\jhansSite\packages\mcapi.net.1.3.1.3\lib\net40\MailChimp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -204,6 +210,7 @@
     <Content Include="Content\Views\Index.html" />
     <Content Include="Content\Views\New.html" />
     <Content Include="Content\Views\Show.html" />
+    <Content Include="Content\Views\Tournaments.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
