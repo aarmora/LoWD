@@ -18,13 +18,13 @@ using System;
 public partial class game
 {
 
-    public int game_id { get; set; }
+    public bool? game_id { get; set; }
 
-    public int undermountain_flag { get; set; }
+    public bool? undermountain_flag { get; set; }
 
-    public int skullport_flag { get; set; }
+    public bool? skullport_flag { get; set; }
 
-    public int plus_one_flag { get; set; }
+    public bool? plus_one_flag { get; set; }
 
     public System.DateTime create_date { get; set; }
 

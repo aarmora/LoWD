@@ -4,13 +4,15 @@
     
     var newController = function ($scope, $http) {
         $http({
-            url: '/home/getInfo',
+            url: '/lowd/home/getInfo',
             method: 'GET'
         }).success(function (data) {
             $scope.info = data;
             console.log($scope.info);
         });
         
+
+
         $scope.users = [];
         $scope.game = {'undermountain_flag':'0', 'skullport_flag':'0', 'plus_one_flag':'0'}
 
@@ -29,7 +31,7 @@
         $scope.submitGame = function () {
             $scope.disableSubmit = true;
             $http({
-                url: '/home/newGame',
+                url: '/lowd/home/newGame',
                 method: 'POST',
                 params: { users: [$scope.users], gameInfo: $scope.game }
             }).success(function (id) {
@@ -40,7 +42,7 @@
         $scope.verify = function (verifyUser) {
             if (verifyUser === 'welord4U') {
                 $scope.verified = true;
-        }
+            }
         };
 
     }
@@ -57,7 +59,7 @@
 
 
         $http({
-            url: '/Home/getGames',
+            url: '/lowd/Home/getGames',
             method: 'GET'
         }).success(function (data) {
             $scope.games = data;

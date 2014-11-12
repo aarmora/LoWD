@@ -18,9 +18,9 @@ namespace LoWD.Controllers
         public class allGames
         {
             public int game_id { get; set; }
-            public int undermountain_flag { get; set; }
-            public int skullport_flag { get; set; }
-            public int plus_one_flag { get; set; }
+            public bool undermountain_flag { get; set; }
+            public bool skullport_flag { get; set; }
+            public bool plus_one_flag { get; set; }
             public System.DateTime create_date { get; set; }
             public int user_id { get; set; }
             public int lord_id { get; set; }
@@ -36,17 +36,20 @@ namespace LoWD.Controllers
             public string fname { get; set; }
             public string lname { get; set; }
         }
-
-
+        
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult newGame(string users, JObject gameInfo)
+        public ActionResult newGame(string users, string gameInfo)
         {
-            var gameInfoObject = gameInfo.ToObject<game>();
+            JObject jo = JObject.Parse(gameInfo);
+            jo["plus_one_flag"] = Convert.ToBoolean(Convert.ToInt32(jo["plus_one_flag"]));
+            jo["undermountain_flag"] = Convert.ToBoolean(Convert.ToInt32(jo["undermountain_flag"]));
+            jo["skullport_flag"] = Convert.ToBoolean(Convert.ToInt32(jo["skullport_flag"]));
+            var gameInfoObject = jo.ToObject<game>();
 
             DateTime gametime = new DateTime(2014,10,16);
 
@@ -107,20 +110,53 @@ namespace LoWD.Controllers
         public ActionResult getLeaderboard()
         {
             string sqlStr = @"
-                Select b.user_name, Sum(a.lord_pts + a.gold_pts + a.adv_pts + a.quest_pts - a.corruption_pts) Total, 
-                Sum(a.lord_pts + a.gold_pts + a.adv_pts + a.quest_pts - a.corruption_pts) / Convert(decimal (5,2), Sum(a.quest_qty)) AvgQ, Count(distinct a.Game_id) Games_Played,
-                Sum(a.lord_pts + a.gold_pts + a.adv_pts + a.quest_pts - a.corruption_pts) / Convert(decimal (5,2), Count(distinct a.Game_id)) AvgPtsGm
-                From game_played a inner  join
-	                [user] b on a.user_id = b.user_id
-                Group By b.user_name
-                Order By Sum(a.lord_pts + a.gold_pts + a.adv_pts + a.quest_pts - a.corruption_pts) desc
+                Select a.player_qty, a.plus_one_flag, a.skullport_flag, a.undermountain_flag,
+	                (
+		                Select u.user_name, SUM(gp.lord_pts + gp.gold_pts + gp.adv_pts - gp.corruption_pts + gp.quest_pts) TotalPoints, Count(gp.game_id) GamesPLayed,
+		                SUM(gp.lord_pts + gp.gold_pts + gp.adv_pts - gp.corruption_pts + gp.quest_pts) / Count(gp.game_id) AvgPts, SUM(drv.Points) PlacePts,
+		                SUM(drv.Points) / CONVERT(decimal(4,2), Count(gp.game_id)) AvgPlacePts
+		                From game_played gp inner join
+			                [user] u on gp.user_id = u.user_id inner join
+			                (
+				                Select gp.game_id, gp.user_id, RANK() OVER (partition by gp.game_id ORDER BY SUM(gp.lord_pts + gp.gold_pts + gp.adv_pts - gp.corruption_pts + gp.quest_pts) desc) Points, u.user_name
+				                From game_played gp inner join
+					                [user] u on gp.user_id = u.user_id
+				                Group By gp.user_id, u.user_name, gp.game_id
+			                ) drv on gp.game_id = drv.game_id AND gp.user_id = drv.user_id
+		                Where gp.game_id in 
+		                (
+			                Select z.game_id
+			                From game z inner join
+				                game_played b on z.game_id = b.game_id
+			                Group by z.game_id, z.skullport_flag, z.undermountain_flag, z.plus_one_flag
+			                Having Count(b.user_id) = a.player_qty
+			                AND z.skullport_flag = a.skullport_flag
+			                AND z.undermountain_flag = a.undermountain_flag
+			                AND z.plus_one_flag  = a.plus_one_flag
+		                )
+		                Group By u.user_name
+		
+		                For XML Path('leader'), type
+			                )
+			
+                From (
+	                Select Count(b.user_id) player_qty, a.skullport_flag, a.undermountain_flag, a.plus_one_flag, a.game_id
+	                From game a inner join
+		                game_played b on a.game_id = b.game_id
+	                Group by a.game_id, a.skullport_flag, a.undermountain_flag, a.plus_one_flag
+	                ) a
+	
+                Group by a.player_qty, a.plus_one_flag, a.skullport_flag, a.undermountain_flag
+                Order by a.player_qty
+                FOR XML Path ('GameType'), ROOT('Leaderboard'), type
                 ";
+            var sqlQuery = db.Database.SqlQuery<string>(sqlStr).ToList();
 
-            var data = db.Database.SqlQuery<LeaderboardModel>(sqlStr).ToList();
+            XmlDocument newDoc = new XmlDocument();
+            string newJSON = JsonConvert.SerializeXmlNode(newDoc);
 
-            string json = JsonConvert.SerializeObject(data);
             Response.ContentType = "application/json";
-            Response.Write(json);
+            Response.Write(newJSON);
 
             return new EmptyResult();
         }
