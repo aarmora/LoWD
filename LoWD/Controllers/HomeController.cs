@@ -135,6 +135,7 @@ namespace LoWD.Controllers
 			                AND z.plus_one_flag  = a.plus_one_flag
 		                )
 		                Group By u.user_name
+		                Order By SUM(drv.Points) / CONVERT(decimal(4,2), Count(gp.game_id)), Count(gp.game_id) desc
 		
 		                For XML Path('leader'), type
 			                )
@@ -150,9 +151,10 @@ namespace LoWD.Controllers
                 Order by a.player_qty
                 FOR XML Path ('GameType'), ROOT('Leaderboard'), type
                 ";
-            var sqlQuery = db.Database.SqlQuery<string>(sqlStr).ToList();
+            var sqlQuery = db.Database.SqlQuery<string>(sqlStr).Single();
 
             XmlDocument newDoc = new XmlDocument();
+            newDoc.LoadXml(sqlQuery);
             string newJSON = JsonConvert.SerializeXmlNode(newDoc);
 
             Response.ContentType = "application/json";

@@ -76,7 +76,21 @@
             method: 'GET'
         }).success(function (data) {
             $scope.leaderboard = data;
-            console.log(data);
+            $scope.undermountain = function (type) {
+                if (type === "1") {
+                    return "Undermountain";
+                }
+            }
+            $scope.skullport = function (type) {
+                if (type === "1") {
+                    return "Skullport";
+                }
+            }
+            $scope.extended = function (type) {
+                if (type === "1") {
+                    return "+1";
+                }
+            }
         });
 
     };

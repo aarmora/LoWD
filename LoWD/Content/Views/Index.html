@@ -1,23 +1,31 @@
 
 
 <div class="container-fluid">
-    <table class="table-hover table">
-        <thead>
-            <tr>
-                <th>User Name</th>
-                <th>Total Points</th>
-                <th>Avg Pts/Quest</th>
-                <th>Games Played</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="leader in leaderboard">
-                <td>{{leader.user_name}}</td>
-                <td>{{leader.total}}</td>
-                <td>{{leader.avgQ}}</td>
-                <td>{{leader.games_played}}</td>
-            </tr>
-        </tbody>
+    <div ng-repeat="type in leaderboard.Leaderboard.GameType">
+        <h1>{{type.player_qty}} - player </h1>
+        <h5>{{skullport(type.skullport_flag)}} {{undermountain(type.undermountain_flag)}} {{extended(type.plus_one_flag)}}</h5>
+        <table class="table-hover table">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Avg Place Pts</th>
+                    <th>Games Played</th>
+                    <th>Place Points</th>
+                    <th>Total Points</th>
+                    <th>Avg Pts/Game</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="leader in type.leader">
+                    <td>{{leader.user_name}}</td>
+                    <td>{{leader.AvgPlacePts}}</td>
+                    <td>{{leader.GamesPLayed}}</td>
+                    <td>{{leader.PlacePts}}</td>
+                    <td>{{leader.TotalPoints}}</td>
+                    <td>{{leader.AvgPts}}</td>
+                </tr>
+            </tbody>
 
-    </table>
+        </table>
+    </div>
 </div>
