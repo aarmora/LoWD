@@ -72,7 +72,7 @@
 
 
         $http({
-            url: '/Home/getLeaderboard',
+            url: '/lowd/Home/getLeaderboard',
             method: 'GET'
         }).success(function (data) {
             $scope.leaderboard = data;
