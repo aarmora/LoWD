@@ -7,13 +7,27 @@
 iframe{
     margin-top:30px;
 }
+.navbar-inverse{
+    color:#fff;
+}
+.nav-container{
+    padding-top:20px;
+}
+.navbar-brand h1{
+    color:#fff;
+}
+.navbar-brand h1:hover{
+    color:#70B9B0;
+}
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a:hover{
+    color:#70B9B0;
+}
 /*End mods*/
 
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 body {
-    padding-top: 50px;
     padding-bottom: 20px;
 }
 

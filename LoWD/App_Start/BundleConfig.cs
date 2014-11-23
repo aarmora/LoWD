@@ -25,7 +25,15 @@ namespace LoWD
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/site.css",
-                      "~/Content/bootstrap.css"));
+                      "~/Content/bootstrap.css",
+                      "~/Content/animate.css",
+                      "~/Content/bootstrap-theme.css",
+                      "~/Content/font-awesome.css",
+                      "~/Content/isotrope.css",
+                      "~/Content/overwrite.css",
+                      "~/Content/style.css",
+                      "~/Content/site.css"
+                      ));
         }
     }
 }

@@ -205,13 +205,28 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\img\lowd.jpg" />
+    <Content Include="Content\img\lowd.png" />
+    <Content Include="Content\img\parallax\img1.jpg" />
+    <Content Include="Content\img\parallax\img2.jpg" />
+    <Content Include="Content\img\parallax\img3.jpg" />
+    <Content Include="Content\img\team\jordan.jpg" />
+    <Content Include="Content\img\team\matt.jpg" />
+    <Content Include="Content\isotope.css" />
+    <Content Include="Content\overwrite.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\Views\Index.html" />
+    <Content Include="Content\Views\Landing.html" />
     <Content Include="Content\Views\New.html" />
     <Content Include="Content\Views\Show.html" />
     <Content Include="Content\Views\Tournaments.html" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -245,6 +260,10 @@
       <DependentUpon>db.edmx</DependentUpon>
       <LastGenOutput>db.cs</LastGenOutput>
     </Content>
+    <Content Include="fonts\fontawesome\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\Arvixe.pubxml" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />

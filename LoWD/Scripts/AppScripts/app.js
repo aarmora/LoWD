@@ -5,7 +5,7 @@ lowdApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
     .when('/', {
         controller: 'homeController',
-        templateUrl: '/lowd/Content/Views/Index.html',
+        templateUrl: '/lowd/Content/Views/Landing.html',
         caseInsensitiveMatch: true
     })
     .when('/New', {
@@ -23,9 +23,14 @@ lowdApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: '/lowd/Content/Views/Tournaments.html',
         caseInsensitiveMatch: true
     })
-    .otherwise({
+    .when('/Stats', {
         controller: 'homeController',
         templateUrl: '/lowd/Content/Views/Index.html',
+        caseInsensitiveMatch: true
+    })
+    .otherwise({
+        controller: 'homeController',
+        templateUrl: '/lowd/Content/Views/Landing.html',
         caseInsensitiveMatch: true
     })
 }])
