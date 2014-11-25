@@ -338,7 +338,8 @@ section.section {
 	background-image: url(../Content/img/parallax/img2.jpg);
 }
 #testimonials{	
-	background-image: url(../Content/img/parallax/img3.jpg);
+	/*background-image: url(../Content/img/parallax/img3.jpg);*/
+    background-image: url(../Content/img/bg-details-tabletop-games_0.jpg);
 }
 /*===========================
   --- Header & menu ----
