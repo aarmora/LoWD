@@ -163,6 +163,62 @@ namespace LoWD.Controllers
             return new EmptyResult();
         }
 
+        public ActionResult getLordLeaderboard()
+        {
+            string sqlStr = @"
+                Select a.player_qty, a.plus_one_flag, a.skullport_flag, a.undermountain_flag,
+	                (
+		                Select l.name, SUM(gp.lord_pts + gp.gold_pts + gp.adv_pts - gp.corruption_pts + gp.quest_pts) TotalPoints, Count(gp.game_id) GamesPLayed,
+		                SUM(gp.lord_pts + gp.gold_pts + gp.adv_pts - gp.corruption_pts + gp.quest_pts) / Count(gp.game_id) AvgPts, SUM(drv.Points) PlacePts,
+		                SUM(drv.Points) / CONVERT(decimal(4,2), Count(gp.game_id)) AvgPlacePts
+		                From game_played gp inner join
+			                lord l on gp.lord_id = l.lord_id inner join
+			                (
+				                Select gp.game_id, gp.lord_id, RANK() OVER (partition by gp.game_id ORDER BY SUM(gp.lord_pts + gp.gold_pts + gp.adv_pts - gp.corruption_pts + gp.quest_pts) desc) Points, l.name
+				                From game_played gp inner join
+					                lord l on gp.lord_id = l.lord_id
+				                Group By gp.lord_id, l.name, gp.game_id
+			                ) drv on gp.game_id = drv.game_id AND gp.lord_id = drv.lord_id
+		                Where gp.game_id in 
+		                (
+			                Select z.game_id
+			                From game z inner join
+				                game_played b on z.game_id = b.game_id
+			                Group by z.game_id, z.skullport_flag, z.undermountain_flag, z.plus_one_flag
+			                Having Count(b.user_id) = a.player_qty
+			                AND z.skullport_flag = a.skullport_flag
+			                AND z.undermountain_flag = a.undermountain_flag
+			                AND z.plus_one_flag  = a.plus_one_flag
+		                )
+		                Group By l.name
+		                Order By SUM(drv.Points) / CONVERT(decimal(4,2), Count(gp.game_id)), Count(gp.game_id) desc
+		
+		                For XML Path('leader'), type
+			                )
+			
+                From (
+	                Select Count(b.lord_id) player_qty, a.skullport_flag, a.undermountain_flag, a.plus_one_flag, a.game_id
+	                From game a inner join
+		                game_played b on a.game_id = b.game_id
+	                Group by a.game_id, a.skullport_flag, a.undermountain_flag, a.plus_one_flag
+	                ) a
+	
+                Group by a.player_qty, a.plus_one_flag, a.skullport_flag, a.undermountain_flag
+                Order by a.player_qty
+                FOR XML Path ('GameType'), ROOT('Leaderboard'), type
+                ";
+            var sqlQuery = db.Database.SqlQuery<string>(sqlStr).Single();
+
+            XmlDocument newDoc = new XmlDocument();
+            newDoc.LoadXml(sqlQuery);
+            string newJSON = JsonConvert.SerializeXmlNode(newDoc);
+
+            Response.ContentType = "application/json";
+            Response.Write(newJSON);
+
+            return new EmptyResult();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application descrition page.";

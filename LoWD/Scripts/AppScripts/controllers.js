@@ -95,6 +95,33 @@
 
     };
 
+    var lordStatsController = function ($scope, $http) {
+
+
+        $http({
+            url: '/lowd/Home/getLordLeaderboard',
+            method: 'GET'
+        }).success(function (data) {
+            $scope.leaderboard = data;
+            $scope.undermountain = function (type) {
+                if (type === "1") {
+                    return "Undermountain";
+                }
+            }
+            $scope.skullport = function (type) {
+                if (type === "1") {
+                    return "Skullport";
+                }
+            }
+            $scope.extended = function (type) {
+                if (type === "1") {
+                    return "+1";
+                }
+            }
+        });
+
+    };
+
     var tournamentsController = function ($scope, $http) {
 
 
@@ -103,6 +130,9 @@
 
     homeController.$inject = ['$scope', '$http']
     lowdApp.controller('homeController', homeController)
+
+    lordStatsController.$inject = ['$scope', '$http']
+    lowdApp.controller('lordStatsController', lordStatsController)
 
     showController.$inject = ['$scope', '$http', '$routeParams']
     lowdApp.controller('showController', showController)
