@@ -102,6 +102,8 @@
         else {
             $scope.tourney = 2;
         };
+    };
+
     var lordStatsController = function ($scope, $http) {
 
 
