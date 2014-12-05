@@ -215,6 +215,7 @@
     <Content Include="Content\img\parallax\img1.jpg" />
     <Content Include="Content\img\parallax\img2.jpg" />
     <Content Include="Content\img\parallax\img3.jpg" />
+    <Content Include="Content\img\team\jordan.jpeg" />
     <Content Include="Content\img\team\jordan.jpg" />
     <Content Include="Content\img\team\matt.jpg" />
     <Content Include="Content\isotope.css" />

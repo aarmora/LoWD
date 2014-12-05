@@ -95,9 +95,25 @@
 
     };
 
-    var tournamentsController = function ($scope, $http) {
+    var tournamentsController = function ($scope, $http, $routeParams, $sce) {
+        if ($routeParams.id) {
+            $scope.tourney = $routeParams.id;
+        }
+        else {
+            $scope.tourney = 2;
+        };
 
+        $http({
+            url: 'getChallongeDesc',
+            method: 'GET'
+        }).success(function (data) {
+            console.log(data);
+        });
 
+        $scope.dynamicUrl = function () {
+            //Needs to be sanitized using $sce
+            return $sce.trustAsResourceUrl("http://challonge.com/cpsLOWD_" + $scope.tourney + "/module");
+        };
 
     };
 
@@ -110,7 +126,7 @@
     newController.$inject = ['$scope', '$http']
     lowdApp.controller('newController', newController)
 
-    tournamentsController.$inject = ['$scope', '$http']
+    tournamentsController.$inject = ['$scope', '$http', '$routeParams', '$sce']
     lowdApp.controller('tournamentsController', tournamentsController)
 
 }())
