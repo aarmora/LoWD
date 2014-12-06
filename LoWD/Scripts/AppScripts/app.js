@@ -1,5 +1,5 @@
 ﻿
-var lowdApp = angular.module('lowdApp', ['ngRoute', 'ui.bootstrap', 'tableSort']);
+var lowdApp = angular.module('lowdApp', ['ngRoute', 'ui.bootstrap', 'ngSanitize', 'tableSort']);
 
 lowdApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider

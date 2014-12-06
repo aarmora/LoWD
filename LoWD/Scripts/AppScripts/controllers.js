@@ -121,10 +121,21 @@
 
     };
 
-    var tournamentsController = function ($scope, $http) {
+    var tournamentsController = function ($scope, $http, $sce, $routeParams) {
+        if ($routeParams.id) {
+            $scope.tourney = $routeParams.id;
+        }
+        else {
+            $scope.tourney = 2;
+        };
 
-
-
+        //$http({
+        //    url: 'getChallongeDesc',
+        //    method: 'GET'
+        //}).success(function (data) {
+        //    console.log(data);
+        //});
+        
     };
 
     homeController.$inject = ['$scope', '$http']
@@ -139,7 +150,13 @@
     newController.$inject = ['$scope', '$http']
     lowdApp.controller('newController', newController)
 
-    tournamentsController.$inject = ['$scope', '$http']
+    tournamentsController.$inject = ['$scope', '$http', '$routeParams', '$sce']
     lowdApp.controller('tournamentsController', tournamentsController)
 
 }())
+
+lowdApp.filter('trustUrl', function ($sce) {
+    return function (url) {
+        return $sce.trustAsResourceUrl(url);
+    };
+});
