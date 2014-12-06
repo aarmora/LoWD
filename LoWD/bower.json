@@ -1,0 +1,19 @@
+{
+  "name": "LoWD",
+  "version": "0.0.0",
+  "description": "Where we prove we're better than Sean.",
+  "authors": [
+    "Matt Lamm",
+    "Jordan Hansen"
+  ],
+  "license": "MIT",
+  "homepage": "aarmora.com/lowd",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "/Scripts/",
+    "test",
+    "tests"
+  ]
+}

@@ -4,28 +4,30 @@
     <div ng-repeat="type in leaderboard.Leaderboard.GameType">
         <h1>{{type.player_qty}} - player </h1>
         <h5>{{skullport(type.skullport_flag)}} {{undermountain(type.undermountain_flag)}} {{extended(type.plus_one_flag)}}</h5>
-        <table class="table-hover table">
+        <table class="table" ts-wrapper>
             <thead>
                 <tr>
-                    <th>User Name</th>
-                    <th>Avg Place Pts</th>
-                    <th>Games Played</th>
-                    <th>Place Points</th>
-                    <th>Total Points</th>
-                    <th>Avg Pts/Game</th>
+                    <th ts-criteria="user_name|lowercase">User Name</th>
+                    <th ts-criteria="AvgPlacePts" ts-default class="text-right">Avg Place</th>
+                    <th ts-criteria="GamesPLayed" class="text-right">Games Played</th>
+                    <!--<th ts-criteria="PlacePts|parseInt" class="text-right">Place Points</th>-->
+                    <th ts-criteria="TotalPoints|parseInt" class="text-right">Total Points</th>
+                    <th ts-criteria="AvgPts|parseFloat" class="text-right">Avg Pts/Game</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="leader in type.leader">
+                <tr ng-repeat="leader in type.leader track by leader.user_name" ts-repeat>
                     <td>{{leader.user_name}}</td>
-                    <td>{{leader.AvgPlacePts}}</td>
-                    <td>{{leader.GamesPLayed}}</td>
-                    <td>{{leader.PlacePts}}</td>
-                    <td>{{leader.TotalPoints}}</td>
-                    <td>{{leader.AvgPts}}</td>
+                    <td class="text-right">{{leader.AvgPlacePts| number:2}}</td>
+                    <td class="text-right">{{leader.GamesPLayed}}</td>
+                    <<!--td class="text-right">{{leader.PlacePts}}</td>-->
+                    <td class="text-right">{{leader.TotalPoints}}</td>
+                    <td class="text-right">{{leader.AvgPts}}</td>
                 </tr>
             </tbody>
 
         </table>
+
+
     </div>
 </div>

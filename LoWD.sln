@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Web
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoWD", "LoWD\LoWD.csproj", "{AFE6D1D4-3998-428A-A6A2-7C5AFC29EFA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jhansSite", "..\jhansSite\jhansSite\jhansSite.csproj", "{CBDB00E6-851B-4A37-B843-ABA3DA165239}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jhansSite.Tests", "..\jhansSite\jhansSite.Tests\jhansSite.Tests.csproj", "{9F01492B-12DD-4D8D-BD18-F1E1636EDD53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0BFAB0A4-DE2C-40EA-B5D7-FDAEB807DE8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

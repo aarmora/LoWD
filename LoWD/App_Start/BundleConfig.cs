@@ -23,6 +23,17 @@ namespace LoWD
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/dataTables").Include(
+                      "~/Scripts/jquery/dist/jquery.min.js",
+                      "~/Scripts/datatables//media/js/jquery.dataTables.min.js",
+                      "~/Scripts/angular/angular.min.js",
+                      "~/Scripts/angular-datatables/dist/angular-datatables.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/tablesort").Include(
+                      "~/Scripts/lib/jquery/dist/jquery.min.js",
+                     "~/Scripts/lib/angular/angular.min.js",
+                     "~/Scripts/lib/angular-tablesort/js/angular-tablesort.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/site.css",
                       "~/Content/bootstrap.css",
@@ -32,7 +43,8 @@ namespace LoWD
                       "~/Content/isotrope.css",
                       "~/Content/overwrite.css",
                       "~/Content/style.css",
-                      "~/Content/site.css"
+                      "~/Content/site.css",
+                      "~/Content/tableSort.css"
                       ));
         }
     }

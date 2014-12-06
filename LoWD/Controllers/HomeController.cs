@@ -135,7 +135,7 @@ namespace LoWD.Controllers
 			                AND z.plus_one_flag  = a.plus_one_flag
 		                )
 		                Group By u.user_name
-		                Order By SUM(drv.Points) / CONVERT(decimal(4,2), Count(gp.game_id)), Count(gp.game_id) desc
+		                Order By SUM(drv.Points) / CONVERT(decimal(4,2), Count(gp.game_id)), Count(gp.game_id) desc, SUM(gp.lord_pts + gp.gold_pts + gp.adv_pts - gp.corruption_pts + gp.quest_pts) / Count(gp.game_id) desc
 		
 		                For XML Path('leader'), type
 			                )
@@ -191,7 +191,7 @@ namespace LoWD.Controllers
 			                AND z.plus_one_flag  = a.plus_one_flag
 		                )
 		                Group By l.name
-		                Order By SUM(drv.Points) / CONVERT(decimal(4,2), Count(gp.game_id)), Count(gp.game_id) desc
+		                Order By SUM(drv.Points) / CONVERT(decimal(4,2), Count(gp.game_id)), Count(gp.game_id) desc, SUM(gp.lord_pts + gp.gold_pts + gp.adv_pts - gp.corruption_pts + gp.quest_pts) / Count(gp.game_id) desc
 		
 		                For XML Path('leader'), type
 			                )
