@@ -121,12 +121,12 @@
 
     };
 
-    var tournamentsController = function ($scope, $http, $sce, $routeParams) {
+    var tournamentsController = function ($scope, $http, $routeParams, $sce) {
         if ($routeParams.id) {
             $scope.tourney = $routeParams.id;
         }
         else {
-            $scope.tourney = 2;
+            $scope.tourney = 3;
         };
 
         //$http({
