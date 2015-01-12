@@ -166,6 +166,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\tournamentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,12 +222,13 @@
     <Content Include="Content\overwrite.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\tableSort.css" />
+    <Content Include="Content\Views\tournaments\adminTournament.html" />
     <Content Include="Content\Views\Index.html" />
     <Content Include="Content\Views\Landing.html" />
     <Content Include="Content\Views\LordStats.html" />
     <Content Include="Content\Views\New.html" />
     <Content Include="Content\Views\Show.html" />
-    <Content Include="Content\Views\Tournaments.html" />
+    <Content Include="Content\Views\tournaments\Tournaments.html" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\fontawesome\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -462,6 +464,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\tournaments\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

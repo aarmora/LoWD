@@ -129,14 +129,70 @@
             $scope.tourney = 3;
         };
 
-        //$http({
-        //    url: 'getChallongeDesc',
-        //    method: 'GET'
-        //}).success(function (data) {
-        //    console.log(data);
-        //});
-        
+        $scope.getChallongeDesc = function () {
+            $http({
+                url: '/tournaments/getChallongeDesc',
+                method: 'GET',
+                params: {tourney: $routeParams.id}
+            }).success(function (data) {
+                console.log(data);
+                $scope.tournament = data.tournament;
+            });
+        }
+        $scope.tourneyDesc = function () {
+            if($scope.tournament){
+                return $sce.trustAsHtml($scope.tournament.description);
+            }
+        }        
     };
+
+    var adminTourneyController = function ($scope, $http) {
+        $http({
+            url: '/lowd/home/getInfo',
+            method: 'GET'
+        }).success(function (data) {
+            $scope.info = data;
+            console.log($scope.info);
+            $scope.tournament = {};
+            $scope.tournament.users = angular.copy(data.users);
+            $scope.unSelected = [];
+        });
+
+        $scope.addUser = function (index) {
+            //if nothing exists, create tournament object, users array, and then push
+            if (!$scope.tournament) {
+                $scope.tournament = {};
+                $scope.tournament.users = [];
+                $scope.tournament.users.push($scope.selectedUser);
+                $scope.unSelected.splice(index, 1);
+            }
+            //if users doesn't exist, create array then push
+            else if (!$scope.tournament.users) {
+                $scope.tournament.users = [];
+                $scope.tournament.users.push($scope.selectedUser);;
+                $scope.unSelected.splice(index, 1);
+            }
+            //if tournament and users already exists, just push
+            else {
+                $scope.tournament.users.push($scope.selectedUser);
+                $scope.unSelected.splice(index, 1);
+            }
+        }
+        $scope.removeUser = function (index) {
+            $scope.unSelected.push($scope.tournament.users[index]);
+            $scope.tournament.users.splice(index, 1);
+        }
+
+        $scope.getChallongeTournies = function () {
+            $http({
+                url: '/lowd/tournaments/createTourney',
+                method: 'POST',
+                params: { tournament: $scope.tournament }
+            }).success(function(data){
+                console.log(data);
+            });
+        };
+    }
 
     homeController.$inject = ['$scope', '$http']
     lowdApp.controller('homeController', homeController)
@@ -149,6 +205,9 @@
 
     newController.$inject = ['$scope', '$http']
     lowdApp.controller('newController', newController)
+
+    adminTourneyController.$inject = ['$scope', '$http']
+    lowdApp.controller('adminTourneyController', adminTourneyController)
 
     tournamentsController.$inject = ['$scope', '$http', '$routeParams', '$sce']
     lowdApp.controller('tournamentsController', tournamentsController)

@@ -22,6 +22,9 @@ iframe{
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a:hover{
     color:#70B9B0;
 }
+.fa-times{
+    cursor:pointer;
+}
 /*End mods*/
 
 

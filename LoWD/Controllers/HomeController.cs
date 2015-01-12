@@ -167,15 +167,6 @@ namespace LoWD.Controllers
             return new EmptyResult();
         }
 
-        public ActionResult getChallongeDesc()
-        {
-            Uri targetUri = new Uri("https://aarmora:hoQa7CcPNOJDTIuRlTja23OPEHril7QvIPqApLtG@api.challonge.com/v1/tournaments/cpsLowd_2.json");
-            System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(targetUri);
-            var response = request.GetResponse() as HttpWebResponse;
-
-            Response.Write(response);
-            return new EmptyResult();
-        }
 
         public ActionResult getLordLeaderboard()
         {
