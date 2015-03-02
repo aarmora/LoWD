@@ -131,7 +131,7 @@
 
         $scope.getChallongeDesc = function () {
             $http({
-                url: '/tournaments/getChallongeDesc',
+                url: '/lowd/tournaments/getChallongeDesc',
                 method: 'GET',
                 params: {tourney: $routeParams.id}
             }).success(function (data) {
